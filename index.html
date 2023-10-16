@@ -10,7 +10,7 @@
             padding: 0;
         }
         .cont{
-            height: 2800px;
+            height: 3000px;
             width: 100%;
             display: flex;
             align-items: center;
@@ -73,6 +73,22 @@
             justify-content: center;
             flex-direction: column;
         }
+        .img{
+            height: 300px;
+            width: 90%;
+            background-image: url(IMG_20231012_183224~2.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .stupid{
+            height: 60px;
+            width: 300px;
+            font-size: 20px;
+            color: white;
+            border: 3px solid red;
+            background: linear-gradient(45deg, blue, rgb(255, 0, 255));
+            border-radius: 30px;
+        }
     </style>
 </head>
 <body>
@@ -110,6 +126,12 @@
             <br>
             <p class="textt">QMUUX GLUD</p>
             <br><br><br><br>
+            <button class="stupid" onclick="schoolversion()">Zur Schul Version wechseln</button>
+            <p class="text" id="mode">Aktuell: Normal</p>
+            <p class="text">Probier einfach aus was im Schoolmode anders ist!</p>
+            <br>
+            <p class="text">Der Richtige Weg:</p>
+            <br>
             <label for="inputalph" class="text">Keyword:</label>
             <p class="text">(nur Buchstaben, keine Leerzeichen)</p>
             <input type="text" name="keywordinput" id="inputalph">
@@ -146,7 +168,18 @@
     <script>
         var inputalph;
         var splitAlph
+        var school = 1;
+        function schoolversion(){
+            if(school === 1){
+                document.getElementById("mode").innerHTML = "Aktuell: School";
+                school = 2;                         
+            }else{
+                document.getElementById("mode").innerHTML = "Aktuell: Normal";
+                school = 1;  
+            }
+        }
         function submitinput(){
+            if(school === 1){
             var Alphabet = "11111111111111111111111111";
             inputalph = document.getElementById("inputalph").value;
             var position = document.getElementById("inputpos").value;
@@ -168,12 +201,8 @@
                 splitAlph[parseInt(positionn) - 1] = uppercasesortetalphsplit[g];
                 positionn = parseInt(positionn) + 1;
             }
-            console.log(positionn);
-            console.log(splitAlph);
-            var positiontwoval = document.getElementById("inputpos").value;
             var positiontwo = parseInt(positionn) - 1;
             if(uppercasesortetalphsplit[uppercasesortetalphsplitlenght - 1] === "A"){
-                console.log("hi");
                 for(i=0;i<25;i++){
                 if(positiontwo > 25){
                     positiontwo = 0;
@@ -3759,6 +3788,95 @@
             }
             }
             document.getElementById("createdalph").innerHTML = splitAlph.join("");
+            }else if(school === 2){
+                var Alphabet = "11111111111111111111111111";
+            inputalph = document.getElementById("inputalph").value;
+            var position = document.getElementById("inputpos").value;
+            if(position > 26){
+                position = 26;
+            }else if(position < 1){
+                position = 1;
+            }
+            splitAlph = Alphabet.split(""); 
+            var sortetalph = [...new Set(inputalph)].join("");  
+            var uppercasesortetalph = sortetalph.toUpperCase();
+            var uppercasesortetalphsplit = uppercasesortetalph.split("");
+            var uppercasesortetalphsplitlenght = uppercasesortetalphsplit.length;
+            var positionn = position;
+            for(var g = 0; g<uppercasesortetalphsplitlenght; g++){
+                if(positionn == 27){
+                    positionn = 1;
+                }
+                splitAlph[parseInt(positionn) - 1] = uppercasesortetalphsplit[g];
+                positionn = parseInt(positionn) + 1;
+            }
+            var positiontwo = parseInt(positionn) - 1;
+            var letter = "A"
+            for(i=0;i<26;i++){
+                if(positiontwo > 25){
+                    positiontwo = 0;
+                }
+                if(splitAlph.includes(letter)){
+                }else{
+                    splitAlph[positiontwo] = letter;
+                    positiontwo += 1;
+                }
+                if(letter === "A"){
+                    letter = "B"
+                }else if(letter === "B"){
+                    letter = "C"
+                }else if(letter === "C"){
+                    letter = "D"
+                }else if(letter === "D"){
+                    letter = "E"
+                }else if(letter === "E"){
+                    letter = "F"
+                }else if(letter === "F"){
+                    letter = "G"
+                }else if(letter === "G"){
+                    letter = "H"
+                }else if(letter === "H"){
+                    letter = "I"
+                }else if(letter === "I"){
+                    letter = "J"
+                }else if(letter === "J"){
+                    letter = "K"
+                }else if(letter === "K"){
+                    letter = "L"
+                }else if(letter === "L"){
+                    letter = "M"
+                }else if(letter === "M"){
+                    letter = "N"
+                }else if(letter === "N"){
+                    letter = "O"
+                }else if(letter === "O"){
+                    letter = "P"
+                }else if(letter === "P"){
+                    letter = "Q"
+                }else if(letter === "Q"){
+                    letter = "R"
+                }else if(letter === "R"){
+                    letter = "S"
+                }else if(letter === "S"){
+                    letter = "T"
+                }else if(letter === "T"){
+                    letter = "U"
+                }else if(letter === "U"){
+                    letter = "V"
+                }else if(letter === "V"){
+                    letter = "W"
+                }else if(letter === "W"){
+                    letter = "X"
+                }else if(letter === "X"){
+                    letter = "Y"
+                }else if(letter === "Y"){
+                    letter = "Z"
+                }else if(letter === "Z"){
+                    letter = "A"
+                }
+            }
+            document.getElementById("createdalph").innerHTML = splitAlph.join("");
+            }
             }
 
             function umwandeln(){
